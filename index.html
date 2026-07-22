@@ -438,79 +438,7 @@ Fast • Secure • Unlimited Video Downloader
 
 <script type="module" src="khan.js"></script>
 
-<script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-
-import {
-getAuth,
-onAuthStateChanged,
-signOut
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyDmCHkAqiFFCZFslAzP7une-1r47P0o4qk",
-
-authDomain: "video-downloader-b4bcb.firebaseapp.com",
-
-projectId: "video-downloader-b4bcb",
-
-storageBucket: "video-downloader-b4bcb.firebasestorage.app",
-
-messagingSenderId: "138753511187",
-
-appId: "1:138753511187:web:8c13c7eee6d9511459d4e6"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const loginLink=document.getElementById("loginLink");
-const signupLink=document.getElementById("signupLink");
-const userBox=document.getElementById("userBox");
-const userEmail=document.getElementById("userEmail");
-const logoutBtn=document.getElementById("logoutBtn");
-const downloadBtn=document.getElementById("downloadBtn");
-const loginNotice=document.getElementById("loginNotice");
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-
-loginLink.style.display="none";
-signupLink.style.display="none";
-userBox.style.display="flex";
-
-userEmail.textContent=user.email;
-
-downloadBtn.disabled=false;
-loginNotice.style.display="none";
-
-}else{
-
-loginLink.style.display="inline-block";
-signupLink.style.display="inline-block";
-userBox.style.display="none";
-
-downloadBtn.disabled=true;
-loginNotice.style.display="block";
-
-}
-
-});
-
-logoutBtn.addEventListener("click",()=>{
-
-signOut(auth);
-
-alert("Logged Out Successfully");
-
-});
-
-</script>
 
 </body>
 
