@@ -62,9 +62,9 @@ signupBtn.addEventListener("click", async () => {
     alert("Account Created Successfully!");
 
   } catch (error) {
-
-    alert(error.message);
-
-  }
+  console.log(error.code);
+  console.log(error.message);
+  alert(error.code + "\n" + error.message);
+}
 
 });
