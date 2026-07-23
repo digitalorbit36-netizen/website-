@@ -1,1 +1,139 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Login | Digital Orbit</title> <link rel="stylesheet" href="login.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> </head> <body> <div class="login-container"> <div class="login-box"> <h1>Digital Orbit</h1> <p>Login to Continue</p> <div class="input-box"> <i class="fa-solid fa-envelope"></i> <input type="email" id="email" placeholder="Email Address"> </div> <div class="input-box"> <i class="fa-solid fa-lock"></i> <input type="password" id="password" placeholder="Password"> </div> <button id="loginBtn">Login</button> <button id="signupBtn">Create New Account</button> <p class="forgot"> <a href="#">Forgot Password?</a> </p> <p class="back"> <a href="index.html">⬅ Back to Home</a> </p> </div> </div> </body> </html>
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Login | Digital Orbit</title> <link rel="stylesheet" href="login.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> </head> <body> <div class="login-container"> <div class="login-box"> <h1>Digital Orbit</h1> <p>Login to Continue</p> <div class="input-box"> <i class="fa-solid fa-envelope"></i> <input type="email" id="email" placeholder="Email Address"> </div> <div class="input-box"> <i class="fa-solid fa-lock"></i> <input type="password" id="password" placeholder="Password"> </div> <button id="loginBtn">Login</button> <button id="signupBtn">Create New Account</button> <p class="forgot"> <a href="#">Forgot Password?</a> </p> <p class="back"> <a href="index.html">⬅ Back to Home</a> </p> </div> </div>import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDmCHkAqiFFCZFslAzP7une-1r47P0o4qk",
+  authDomain: "video-downloader-b4bcb.firebaseapp.com",
+  projectId: "video-downloader-b4bcb",
+  storageBucket: "video-downloader-b4bcb.firebasestorage.app",
+  messagingSenderId: "138753511187",
+  appId: "1:138753511187:web:8c13c7eee6d9511459d4e6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+
+// Login
+loginBtn.addEventListener("click", async () => {
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    alert("Login Successful!");
+
+    window.location.href = "index.html";
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+
+});
+
+// Signup
+signupBtn.addEventListener("click", async () => {
+
+  try {
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    alert("Account Created Successfully!");
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyDmCHkAqiFFCZFslAzP7une-1r47P0o4qk",
+  authDomain: "video-downloader-b4bcb.firebaseapp.com",
+  projectId: "video-downloader-b4bcb",
+  storageBucket: "video-downloader-b4bcb.firebasestorage.app",
+  messagingSenderId: "138753511187",
+  appId: "1:138753511187:web:8c13c7eee6d9511459d4e6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+
+// Login
+loginBtn.addEventListener("click", async () => {
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    alert("Login Successful!");
+
+    window.location.href = "index.html";
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+
+});
+
+// Signup
+signupBtn.addEventListener("click", async () => {
+
+  try {
+
+    await createUserWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    alert("Account Created Successfully!");
+
+  } catch (error) {
+
+    alert(error.message);
+
+  }
+
+<script type="module" src="login.js"></script>
+ </body> </html>
