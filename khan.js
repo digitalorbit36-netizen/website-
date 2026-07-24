@@ -1,3 +1,7 @@
+// =====================================
+// DIGITAL ORBIT - FIREBASE SETUP
+// =====================================
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import {
   getFirestore,
@@ -28,13 +32,28 @@ const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
 
-  if (!user) {
-    alert("Please login first.");
+  const loginNotice = document.getElementById("loginNotice");
 
-    window.location.href = "login.html";
+  if (user) {
+    console.log("User logged in:", user.email);
+
+    if (loginNotice) {
+      loginNotice.style.display = "none";
+    }
+
+  } else {
+
+    console.log("User not logged in");
+
+    if (loginNotice) {
+      loginNotice.style.display = "block";
+    }
+
   }
 
 });
+
+
 // =====================================
 // DARK / LIGHT MODE
 // =====================================
