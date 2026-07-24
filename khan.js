@@ -1,13 +1,14 @@
-// =====================================
-// DIGITAL ORBIT - FIREBASE SETUP
-// =====================================
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import {
   getFirestore,
   collection,
   addDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDmCHkAqiFFCZFslAzP7une-1r47P0o4qk",
@@ -21,7 +22,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
+  
+
+onAuthStateChanged(auth, (user) => {
+
+  if (!user) {
+    alert("Please login first.");
+
+    window.location.href = "login.html";
+  }
+
+});
 // =====================================
 // DARK / LIGHT MODE
 // =====================================
@@ -79,12 +92,21 @@ async function startDownload() {
       url: url,
       createdAt: new Date().toISOString()
     });
+    const response = await fetch("http://localhost:3000/download", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ url })
+});
 
+const data = await response.json();
+
+alert(data.message);
     downloadBtn.disabled = false;
     downloadBtn.innerHTML =
       '<i class="fa-solid fa-download"></i> Download';
 
-    alert("URL Saved Successfully!");
 
   } catch (error) {
 
