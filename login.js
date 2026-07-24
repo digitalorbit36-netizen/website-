@@ -50,7 +50,8 @@ loginBtn.addEventListener("click", async () => {
 
 // Signup
 signupBtn.addEventListener("click", async () => {
-
+console.log(email.value);
+console.log(password.value);
   try {
 
     await createUserWithEmailAndPassword(
